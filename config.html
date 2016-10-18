@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>投标配置</title>
+        <style>
+            body {
+                font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+                font-size: 100%;
+            }
+            #configForm{
+                min-width: 250px;
+                margin-top:  10px;
+                margin-bottom:  10px;
+                margin-left:  10px;
+                margin-right:  10px;
+            }
+        </style>
+        <script src="jquery.min.js"></script>
+        <script src="config-popup.js"></script>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div>
+            <form role="form" id="configForm">
+                <div class="form-group">
+                    <label for="inputPassword">交易密码</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="自动填充交易密码，存储在本地">
+                </div>
+                <div class="form-group">
+                    <label for="inputInvestValue">投资金额</label>
+                    <input type="number" class="form-control" id="inputInvestValue" placeholder="金额为1000的整数倍">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="checkboxAllin">全额购买
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>产品期限</label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="30" checked>30
+                        </label>
+                        <label>
+                            <input type="checkbox" value="45" checked>45
+                        </label>
+                        <label>
+                            <input type="checkbox" value="60" checked>60
+                        </label>
+                        <label>
+                            <input type="checkbox" value="90" checked>90
+                        </label>
+                        <label>
+                            <input type="checkbox" value="all">任意时间长度
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default" id="btnUpdateConfig">应用</button>
+                <button type="submit" class="btn btn-primary" id="btnRun">运行</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+

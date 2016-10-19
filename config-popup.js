@@ -1,14 +1,36 @@
 var stor = chrome.storage.local
-var config = {
-    customValue: null,
-    allin: null
+
+function saveConfig() {
+    allin = $("#checkboxAllin").prop("checked");
+    customValue = $("#inputInvestValue").prop("value") == '' ? 0 : $("#inputInvestValue").prop('value');
+    password = $("#inputPassword").prop("value")
+
+    stor.set({
+        allin: allin,
+        custom_value: customValue,
+        jy_pass: password
+    }, function() {
+        location.reload();
+    });
+
 };
+
+function loadConfig() {
+    stor.get({
+        allin: false,
+        custom_value: 0,
+        jy_pass: null
+    }, function(res) {
+        $("#inputPassword").prop("value", res.jy_pass);
+        $("#inputInvestValue").prop("disabled", res.allin);
+        $("#inputInvestValue").prop("value", res.allin || res.custom_value == 0 ? '' : res.custom_value);
+        $("#checkboxAllin").prop("checked", res.allin ? true : false);
+    });
+}
 
 $(document).ready(function () {
 
-    $("#inputInvestValue").prop("disabled", config.allin);
-    $("#inputInvestValue").prop("value", config.customValue == 0 ? '' : config.customValue);
-    $("#checkboxAllin").prop("checked", config.allin ? true : false);
+    loadConfig();
 
     $("#checkboxAllin").click(function () {
         if ($(this).prop('checked')) {
@@ -19,10 +41,7 @@ $(document).ready(function () {
         }
     });
 
-    $("btnUpdateConfig").click(function () {
-        config.allin = $("#checkboxAllin").prop("checked");
-        config.customValue = $("#inputInvestValue").prop("value") == '' ? 0 : $("#inputInvestValue").prop('value');
+    document.getElementById("btnUpdateConfig").addEventListener('click', saveConfig);
 
-        stor.set(config);
-    });
 });
+

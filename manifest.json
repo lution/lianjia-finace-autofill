@@ -9,9 +9,19 @@
         "default_title": "配置",
         "default_popup": "config.html"
     },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://licai.lianjia.com/licai_*"],
+            "js":["autofill.js"]
+        }
+
+    ],
     "permissions": [
         "activeTab",
-        "storage",
-        "https://licai.lianjia.com/"
+        "storage"
     ]
 }
